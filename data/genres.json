@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "R&B",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=RNB"
+  },
+  {
+    "id": "2",
+    "name": "Trap",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=Trap"
+  },
+  {
+    "id": "3",
+    "name": "HIPHOP",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=HIPHOP"
+  },
+  {
+    "id": "4",
+    "name": "Jazz",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=Jazz"
+  },
+  {
+    "id": "5",
+    "name": "POP",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=POP"
+  },
+  {
+    "id": "6",
+    "name": "Metal",
+    "description": "Description goes here",
+    "image": "https://placehold.co/600x400/png?text=Metal"
+  }
+]
