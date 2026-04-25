@@ -1,38 +1,42 @@
 import React from "react"
-import { View, Text, ScrollView, StyleSheet } from "react-native"
+import { View, Text, ScrollView, StyleSheet, Button, Alert } from "react-native"
 
-export default function StatsScreen({ history }) {
+export default function StatsScreen({ history, setHistory }) {
+  const handleReset = () => {
+    Alert.alert("Resetare", "Ștergi tot istoricul?", [
+      { text: "Nu", style: "cancel" },
+      { text: "Da", style: "destructive", onPress: () => setHistory([]) },
+    ])
+  }
+
   return (
-    <ScrollView style={styles.container}>
-      {history.map((user, index) => (
-        <View key={index} style={styles.card}>
-          <Text style={styles.name}>{user.name}</Text>
-          <Text style={styles.result}>Winner: {user.results[0]?.name}</Text>
-        </View>
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      {history.length > 0 && (
+        <Text style={styles.title}>Istoric Utilizatori:</Text>
+      )}
+      <ScrollView>
+        {history.map((user, i) => (
+          <View key={i} style={styles.card}>
+            <Text style={{ color: "#fff" }}>
+              {user.name} | Câștigător: {user.results[0]?.name}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
+      {history.length > 0 && (
+        <Button title="Reset" onPress={handleReset} color="red" />
+      )}
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    width: "100%",
-  },
-
+  container: { height: 200, width: "100%", padding: 10 },
+  title: { color: "#aaa", marginBottom: 5 },
   card: {
     backgroundColor: "#222",
-    padding: 10,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-
-  name: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-
-  result: {
-    color: "#aaa",
+    padding: 8,
+    borderRadius: 4,
+    marginBottom: 5,
   },
 })

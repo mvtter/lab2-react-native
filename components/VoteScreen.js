@@ -8,69 +8,36 @@ export default function VoteScreen({ onFinish }) {
   const { list, vote } = useTournament(onFinish)
 
   if (list.length < 2) return null
-
-  const a = list[0]
-  const b = list[1]
+  const [a, b] = [list[0], list[1]]
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.half} onPress={() => vote(a, b)}>
-        <Image source={{ uri: a.image }} style={styles.image} />
-        <View style={styles.overlayBottom}>
-          <Text style={styles.title}>{a.name}</Text>
-          <Text style={styles.desc}>{a.description}</Text>
-        </View>
-      </Pressable>
-
-      <Pressable style={styles.half} onPress={() => vote(b, a)}>
-        <Image source={{ uri: b.image }} style={styles.image} />
-        <View style={styles.overlayTop}>
-          <Text style={styles.title}>{b.name}</Text>
-          <Text style={styles.desc}>{b.description}</Text>
-        </View>
-      </Pressable>
+      {[a, b].map((item, index) => (
+        <Pressable
+          key={item.id}
+          style={styles.half}
+          onPress={() => vote(item, index === 0 ? b : a)}
+        >
+          <Image source={{ uri: item.image }} style={styles.image} />
+          <View style={styles.label}>
+            <Text style={styles.txt}>{item.name}</Text>
+          </View>
+        </Pressable>
+      ))}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-  },
-
-  half: {
-    flex: 1,
-  },
-
-  image: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-  },
-
-  overlayBottom: {
+  container: { flex: 1 },
+  half: { flex: 1, borderBottomWidth: 1, borderColor: "#333" },
+  image: { ...StyleSheet.absoluteFillObject },
+  label: {
     position: "absolute",
     bottom: 20,
     left: 20,
-    right: 20,
+    backgroundColor: "rgba(0,0,0,0.6)",
+    padding: 10,
   },
-
-  overlayTop: {
-    position: "absolute",
-    top: 20,
-    left: 20,
-    right: 20,
-  },
-
-  title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-
-  desc: {
-    fontSize: 20,
-    color: "#fff",
-  },
+  txt: { color: "#fff", fontSize: 20, fontWeight: "bold" },
 })

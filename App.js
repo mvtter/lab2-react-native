@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { View, TextInput, Button, StyleSheet } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { View, TextInput, Button, StyleSheet, Alert } from "react-native"
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context"
 
 // Components
 import VoteScreen from "./components/VoteScreen"
@@ -15,65 +15,64 @@ export default function App() {
 
   const handleFinish = (finalResults) => {
     setResults(finalResults)
-
     setHistory((prev) => {
-      const exists = prev.find((u) => u.name === name)
-      if (exists) {
-        return prev.map((u) =>
-          u.name === name ? { ...u, results: finalResults } : u
-        )
+      const idx = prev.findIndex((u) => u.name === name)
+      if (idx > -1) {
+        const newHist = [...prev]
+        newHist[idx].results = finalResults
+        return newHist
       }
       return [...prev, { name, results: finalResults }]
     })
   }
 
-  if (!started) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View>
+  const renderContent = () => {
+    if (!started)
+      return (
+        <View style={styles.container}>
           <TextInput
             style={styles.input}
             placeholder="Numele tău"
             value={name}
             onChangeText={setName}
           />
-          <Button title="Start" onPress={() => setStarted(true)} />
-          <StatsScreen history={history} />
+          <Button
+            title="Start"
+            onPress={() =>
+              name.length > 2
+                ? setStarted(true)
+                : Alert.alert("Eroare", "Nume prea scurt")
+            }
+          />
+          <StatsScreen history={history} setHistory={setHistory} />
         </View>
-      </SafeAreaView>
-    )
-  }
-
-  if (results) {
-    return (
-      <SafeAreaView style={styles.container}>
+      )
+    if (results)
+      return (
         <ResultScreen
           results={results}
           onRestart={() => {
-            setStarted(false)
             setResults(null)
+            setStarted(false)
           }}
         />
-      </SafeAreaView>
-    )
+      )
+    return <VoteScreen onFinish={handleFinish} />
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <VoteScreen onFinish={handleFinish} />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#111" }}>
+        {renderContent()}
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#111",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  container: { flex: 1, alignItems: "center", justifyContent: "center" },
   input: {
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     width: 250,
     padding: 10,
     borderRadius: 8,

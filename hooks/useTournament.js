@@ -1,33 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 // Data
-import genres from "../data/genres.json"
+import genresData from "../data/genres.json"
 
 export default function useTournament(onFinish) {
-  const [list, setList] = useState(genres)
+  const [list, setList] = useState(genresData)
   const [ranking, setRanking] = useState([])
 
+  useEffect(() => {
+    if (list.length === 1) {
+      onFinish([list[0], ...ranking])
+    }
+  }, [list])
+
   const vote = (winner, loser) => {
-    const updatedList = list.filter(
-      (item) => item.id !== winner.id && item.id !== loser.id
-    )
-
-    setRanking((prev) => {
-      const newRanking = [loser, ...prev]
-
-      if (updatedList.length === 0) {
-        const finalRanking = [winner, ...newRanking]
-        onFinish(finalRanking)
-        return newRanking
-      }
-
-      return newRanking
+    setRanking((prev) => [loser, ...prev])
+    setList((current) => {
+      const filtered = current.filter(
+        (item) => item.id !== winner.id && item.id !== loser.id
+      )
+      return [...filtered, winner]
     })
-
-    if (updatedList.length === 0) return
-
-    updatedList.push(winner)
-    setList(updatedList)
   }
 
   return { list, vote }

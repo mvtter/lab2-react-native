@@ -2,37 +2,61 @@
   {
     "id": "1",
     "name": "R&B",
-    "description": "Description goes here",
+    "description": "Ritmuiri senzuale și voci pline de emoție care îmbină perfect soul-ul cu producția modernă.",
     "image": "https://placehold.co/600x400/png?text=RNB"
   },
   {
     "id": "2",
     "name": "Trap",
-    "description": "Description goes here",
+    "description": "Beat-uri agresive, hi-hat-uri rapide și un bas care domină orice boxă.",
     "image": "https://placehold.co/600x400/png?text=Trap"
   },
   {
     "id": "3",
-    "name": "HIPHOP",
-    "description": "Description goes here",
+    "name": "Hip-Hop",
+    "description": "Cultura străzii exprimată prin versuri complexe și ritmuri care te fac să dai din cap.",
     "image": "https://placehold.co/600x400/png?text=HIPHOP"
   },
   {
     "id": "4",
     "name": "Jazz",
-    "description": "Description goes here",
+    "description": "Improvizație pură și armonii sofisticate care transformă orice audiție într-o experiență elegantă.",
     "image": "https://placehold.co/600x400/png?text=Jazz"
   },
   {
     "id": "5",
-    "name": "POP",
-    "description": "Description goes here",
+    "name": "Pop",
+    "description": "Melodii contagioase și producții strălucitoare create special pentru a deveni hituri globale.",
     "image": "https://placehold.co/600x400/png?text=POP"
   },
   {
     "id": "6",
     "name": "Metal",
-    "description": "Description goes here",
+    "description": "Energie brută, chitări distorsionate și o intensitate care nu cunoaște compromisuri.",
     "image": "https://placehold.co/600x400/png?text=Metal"
+  },
+  {
+    "id": "7",
+    "name": "Rock",
+    "description": "Spiritul rebel al generațiilor, definit prin riff-uri legendare de chitară și tobe puternice.",
+    "image": "https://placehold.co/600x400/png?text=Rock"
+  },
+  {
+    "id": "8",
+    "name": "Techno",
+    "description": "Ritmuri hipnotice și sunete sintetice perfecte pentru o noapte nesfârșită în club.",
+    "image": "https://placehold.co/600x400/png?text=Techno"
+  },
+  {
+    "id": "9",
+    "name": "Reggae",
+    "description": "Vibrații relaxate din Jamaica, cu un mesaj de pace, dragoste și unitate.",
+    "image": "https://placehold.co/600x400/png?text=Reggae"
+  },
+  {
+    "id": "10",
+    "name": "Classical",
+    "description": "Capodopere orchestrale atemporale care explorează profunzimea emoției umane.",
+    "image": "https://placehold.co/600x400/png?text=Classical"
   }
 ]
